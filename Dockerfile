@@ -39,7 +39,7 @@ USER $NB_USER
 
 # download and unpack Minecraft
 WORKDIR $HOME
-RUN wget --quiet https://files.minecraftforge.net/maven/net/minecraftforge/forge/1.15.1-30.0.51/forge-1.15.1-30.0.51-installer.jar
+RUN wget --quiet --no-cache https://files.minecraftforge.net/maven/net/minecraftforge/forge/1.15.1-30.0.51/forge-1.15.1-30.0.51-installer.jar
 
 # run Minecraft installer
 RUN java -jar forge-$VERSION-installer.jar --installServer
@@ -47,7 +47,7 @@ RUN rm forge-$VERSION-installer.jar
 
 # Install some mods
 RUN mkdir mods
-RUN cd mods/ && wget --quiet https://www.curseforge.com/minecraft/mc-mods/crafttweaker/files/2890053/CraftTweaker-1.15.2-6.0.0.9.jar
+RUN cd mods/ && wget --quiet --no-cache https://www.curseforge.com/minecraft/mc-mods/crafttweaker/files/2890053/CraftTweaker-1.15.2-6.0.0.9.jar
 
 # Configure remaining tasks for root user
 USER root
