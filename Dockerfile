@@ -23,7 +23,7 @@ RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
     locale-gen
 
 # Configure environment
-ENV VERSION 1.15.2-31.1.0
+ENV VERSION 1.15.1-30.0.51
 ENV SHELL /bin/bash
 ENV NB_USER minecraft
 ENV NB_UID 1000
@@ -39,7 +39,7 @@ USER $NB_USER
 
 # download and unpack Minecraft
 WORKDIR $HOME
-RUN wget --quiet https://files.minecraftforge.net/maven/net/minecraftforge/forge/1.15.2-31.1.0/forge-1.15.2-31.1.0-installer.jar
+RUN wget --quiet https://files.minecraftforge.net/maven/net/minecraftforge/forge/1.15.1-30.0.51/forge-1.15.1-30.0.51-installer.jar
 
 # run Minecraft installer
 RUN java -jar forge-$VERSION-installer.jar --installServer
@@ -47,6 +47,7 @@ RUN rm forge-$VERSION-installer.jar
 
 # Install some mods
 RUN mkdir mods
+RUN cd mods/ && wget --quiet https://www.curseforge.com/minecraft/mc-mods/crafttweaker/files/2890053/CraftTweaker-1.15.2-6.0.0.9.jar
 
 # Configure remaining tasks for root user
 USER root
